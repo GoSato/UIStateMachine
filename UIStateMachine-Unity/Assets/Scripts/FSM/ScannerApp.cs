@@ -24,6 +24,13 @@ namespace STYLY.ScannerApp
         private Button _backButton;
         public Button BackButton { get { return _backButton; } }
 
+        [RuntimeInitializeOnLoadMethod]
+        static void OnRuntimeMethodLoad()
+        {
+            Screen.SetResolution(1920, 1080, false);
+
+        }
+
         private void Start()
         {
             var mainMenuState = new LoginPage();
