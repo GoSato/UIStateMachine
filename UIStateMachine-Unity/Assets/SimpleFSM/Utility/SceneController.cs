@@ -1,10 +1,10 @@
-﻿using Utility;
+﻿using SimpleFSM.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Management
+namespace SimpleFSM.Scene
 {
     /// <summary>
     /// シーン読み込みの制御を行う

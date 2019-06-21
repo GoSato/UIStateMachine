@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleFSM;
-using Utility;
+using SimpleFSM.Utility;
 using UnityEngine.UI;
 
 /// <summary>
@@ -35,7 +35,11 @@ namespace SampleApp
         {
             var mainMenuState = new LoginPage();
             var stateMachine = new StateMachine(mainMenuState);
-            StartCoroutine(stateMachine.Execute().GetEnumerator());
+
+            // Execute()で返ってきたIEnumerableからIEnumeratorを取得し、実行
+            var enumerable = stateMachine.Execute();
+            var enumerator = enumerable.GetEnumerator();
+            StartCoroutine(enumerator);
         }
     }
 }

@@ -17,8 +17,10 @@ namespace SimpleFSM
             state.EndEnter();
         }
 
+        // 実行可能なIEnumerableを返す
         public IEnumerable Execute()
         {
+            // ずっとぶん回す
             while (true)
             {
                 for(var e = state.Execute().GetEnumerator(); transition == null && e.MoveNext();)
@@ -38,22 +40,25 @@ namespace SimpleFSM
                     break;
                 }
 
+                // いまのステートが終わる時の演出
                 foreach(var e in transition.Exit())
                 {
                     yield return e;
                 }
                 state.EndExit();
 
+                // ステートの切り替え
+                // BeginEnter()呼び出し
                 State = nextState;
                 nextState = null;
 
+                // 新しいステートが始まるときの演出
                 foreach(var e in transition.Enter())
                 {
                     yield return e;
                 }
-
-                transition = null;
                 state.EndEnter();
+                transition = null;
             }
         }
 
