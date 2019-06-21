@@ -1,0 +1,18 @@
+﻿using Management;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/// <summary>
+/// シーンをロードする
+/// </summary>
+public class SceneLoader : MonoBehaviour
+{
+    [SerializeField]
+    private string[] _sceneList;
+
+    private void Start()
+    {
+        SceneController.Instance.LoadAdditiveScene(_sceneList);
+    }
+}
