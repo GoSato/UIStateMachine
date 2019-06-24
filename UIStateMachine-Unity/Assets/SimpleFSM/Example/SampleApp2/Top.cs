@@ -6,10 +6,10 @@ using System;
 
 public class Top : IState
 {
-    private void GoNextState()
+    public void GoNextState()
     {
         var nextState = new Home();
-        var transition = new ScreenFadeTransition(1.0f);
+        var transition = new PolygonDestructionTransition(3.0f);
         var eventArgs = new StateBeginExitEventArgs(nextState, transition);
         OnBeginExit(this, eventArgs);
     }
@@ -39,6 +39,15 @@ public class Top : IState
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 GoNextState();
+            }
+
+            if(Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                if(touch.phase == TouchPhase.Ended)
+                {
+                    GoNextState();
+                }
             }
             yield return null;
         }
